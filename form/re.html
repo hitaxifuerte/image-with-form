@@ -1,0 +1,114 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="style.css">
+	<script>
+			function validate(form)
+			{
+				var password = form.password.value; 
+                var cpassword = form.cpassword.value;
+				
+				
+				if(password!=cpassword)
+				{
+					alert('password not match');
+					return false;
+				}
+			
+				
+				var lowerreg=/(?=.*[a-z])/;
+				if(!password.match(lowerreg))
+				{
+					alert('password at least one lowercase letter');
+					return false;
+				}
+				var upperreg=/(?=.*[A-Z])/;
+				if(!password.match(upperreg))
+				{
+					alert('password at least one upper letter');
+					return false;
+				}
+				
+				var digitreg=/[0-9]/;
+				if(!password.match(digitreg))
+				{
+					alert('password at least one digit');
+					return false;
+				}
+				var specialreg=/[!@#\$%\^&\*]/;
+				if(!password.match(specialreg))
+				{
+					alert('password at least one special charcter');
+					return false;
+				}
+				
+				var phoneno = /^\d{10}$/;
+				if(form.mno.value.match(phoneno))
+				{
+					return true;
+				}			
+				else
+				{
+						alert("Not a valid Phone Number");
+						return false;
+				}	
+				
+			}
+			
+	</script>
+</head>
+<body>
+
+<form action="register.php" method="post" onsubmit="return validate(this)" enctype="multipart/form-data">
+  <div class="container">
+    <h1 align="center">Registeration Form</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
+	<label for="name"><b>Full Name:</b></label>
+    <input type="text" placeholder="Enter Full Name" name="name" required>
+	
+    <label for="email"><b>Email</b></label>
+    <input type="email" placeholder="Enter Email" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="cpassword" required>
+   
+   <label for="mno"><b>Mobile No</b></label>
+    <input type="text" placeholder="Enter Mobileno" name="mno"  required>
+
+	<label for="gender"><b>Gender</b></label>
+	<input type="radio" name="gender" value="male" checked="checked"/>Male
+	<input type="radio" name="gender" value="female" />Female
+	<br><br><br>
+	
+	<label for="hobbies"><b>Hobbies</b></label>
+	 <input type="checkbox" name="hobbies[]" value="reading" checked> reading
+  <input type="checkbox" name="hobbies[]" value="travelling"> travelling
+  <br><br><br>
+  
+  
+	 <label for="city"><b>City</b></label>
+		<select name="city">
+							<option value="rajkot">Rajkot</option>
+							<option value="morbi">Morbi</option>
+							<option value="gondal">Gondal</option>
+							<option value="surat">Surat</option>
+	</select>
+	<br><br>
+	 <label for="image"><b>Choose image</b></label>
+    <input type="file" name="file" />
+	<br>
+	<input type="submit" class="registerbtn" value="Register" name="submit">
+	<input type="reset" class="registerbtn" value="Cancel" name="cancel">
+  </div>
+  
+ 
+</form>
+
+</body>
+</html>
